@@ -51,12 +51,6 @@ def worker(part):
     print("\n")	
     np.save('{}_50x50.npy'.format(part),d)         
 
-def listener(q,nbr):
-    pbar = tqdm(total = nbr)
-    sys.stdout.flush()
-    for item in iter(q.get, None):
-        pbar.update()
-    sys.stdout.flush()
 
 parameters= Param()
 if __name__ == '__main__':
