@@ -38,6 +38,8 @@ Frequently the simulator return a image of the simulation.
 
 
 **Usage**
+
+
 **Warning this section may be incorrect due to recent changes, you can however quickstart the simulator by launching test.py**
 1. First, you have to precalculate radiation with multitaskingallhauteur.py.
 To do that choose the paramaters (line 276-294) of the prepacalculator. And start the programm.
