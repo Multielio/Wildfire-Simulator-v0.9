@@ -9,7 +9,7 @@ def test_grille():
     for k in range(1):
         obj_grille.grille[25+k][25] = Case(feu=True, isdry=True, temperature=500)  # On place une source de feu
     extract = Extractor(obj_grille)
-    extract.generate(0.1,5,5,True)
+    extract.generate(0.1,10,2,True)
     
 
 test_grille()

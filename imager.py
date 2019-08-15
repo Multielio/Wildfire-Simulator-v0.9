@@ -63,8 +63,8 @@ def image_situation(grille2D, fig1):
             elif case.temperature > 373:
                 o.append(colorConverter.to_rgb("brown"))
             elif (case.temperature < 373) and (case.temperature > grille2D.pa.Tambiant):
-                redco = 200*(1-(case.temperature-grille2D.pa.Tambiant)/(373-grille2D.pa.Tambiant))
-                c = (round(redco, 0), 100.0, 255.0)
+                x = 1-(case.temperature-grille2D.pa.Tambiant)/(373-grille2D.pa.Tambiant)
+                c = ((1-x)*255, 80*x +(1-x)*140, 0)
                 o.append(c)
             else:
                 o.append(colorConverter.to_rgb(case.ctype.couleur))
