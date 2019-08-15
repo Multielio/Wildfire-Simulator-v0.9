@@ -1,0 +1,85 @@
+
+Taille_grille: 50
+
+precal:
+  - Nomrad : "50x50"
+  - Init_h : 0.51
+  - Espacement_H : 0.2
+  - Nombre_hauteur_differentes: 50
+  - Precal_path: "ray051_02_2/" 
+global:
+  - thermal_conductivity_air : "(lambda T: 1.5207*(10**(-22))*(T**(3)) - 4.8574*(10**(-8))*(T**(2))+ 1.0184*(10**(-4))*T -3.9333*(10**-4))"  
+  - cinematic_viscosity_air : "(lambda T: (-1.363528*(10**-14)*T**3)+(1.00881778*(10**-10) *(T**2))+(3.452139*(10**-8)*T)-(3.400747*(10**-6)))"  
+values:
+  - Vchar: 0.3  
+    # Contenu en résidu charbonneux
+  - Kf : 0.4  
+    # Coefficient d'extinction de la flamme,  utile pour calculer l'émissivité de celle ci
+  - Xr : 0.35  
+    # Fraction de Qpoint libérée par rayonnement (entre 0.2-0.4 depend végétaux) | sans unité
+  - Tambiant : 307  
+    # Température de l'air | K
+  - Tpyro : 500  
+    # Température de pyrolyse | K
+
+  - sigma_boltzmann : "5.67*(10**-8)" 
+    # Stefan-Boltzman constante | kg.s^-3 .K^-4
+
+  - sigma_k : 12240  
+    # Rapport surface volume des aiguilles (entre 4000 et 12000 selon espece)| m^-1
+
+  - alpha_k : 0.0012  
+    # Fraction volumique de la phase solide | sans unité
+
+  - Efb : 0.9  
+    # émissivité de du combustible
+
+  - U : 10  
+    # Vitesse du vent | m.s^-1
+
+  - Teta_horizontal_vent : "np.pi/3"
+
+  - g : 9.81
+
+  - D : 2.54  
+    # Diametre d'une cellule | m
+
+  - Tc : 5 
+    # Temps d'extinction de la flamme | s
+
+  - mprimeprimeDFF : 0.313  
+    # Charge de combustible | kg.m^-2
+
+  - deltahc : "15.6*(10**6)" 
+    # Chaleur de combustion |" J.kg^-1
+
+  - Rho_wff : 612  
+    # Masse volumique du combustible végétal humide  | kg.m^-3
+
+  - Rho_dff : 720  
+    # Masse volumique du combustible végétal sec  | kg.m^-3
+
+  - Cdff : 1470 
+    # Chaleur spécifique combustible végétal sec  | J.kg^-1 .K^-1
+
+  - Cpeau : 4181  
+    # Capacité de l'eau | J.kg^-1 .K^-1
+
+  - FMC : 0.058  
+    # Teneur en eau initiale du combustible végétal | sans unité
+
+  - Lpyro : "15.6*(10**6)"  
+    # Pin 1.77 +- 0.31 MJ. kg^-1 | J.kg^-1
+
+  - Lvap : "2.25*(10**6)"  
+    # Chaleur latente de vaporisation de l’eau à 373K | J.kg^-1
+
+  - Pr : 0.707  
+    # Nombre de Prandtl (0.707 pour air a 25°C) | sans unité
+
+  - hcom : 0.51 
+    # Hauteur de la strate végétale supossé de hauteur constante
+
+  - absorptivity : 0.9
+
+
