@@ -3,6 +3,9 @@ import yaml
 class Param(object):
 
     def  __init__(self):
+        self.load_config()
+
+    def load_config(self):
         #Load values from config file.
         raw = ""
         with open("config.yml", 'r') as ymlfile:
@@ -14,6 +17,11 @@ class Param(object):
         self.Espacement_H = raw['precal'][2]['Espacement_H']
         self.Nombre_hauteur_differentes = raw['precal'][3]['Nombre_hauteur_differentes']
         self.Precal_path = raw['precal'][4]['Precal_path']
+        self.dteta = eval(raw['precal'][5]['dteta'])
+        self.dh = raw['precal'][6]['dh']
+        self.nphoton= raw['precal'][7]['nphoton']
+        self.nbr_cores= raw['precal'][8]['nbr_cores']
+
         self.Vchar = raw['values'][0]['Vchar']
         self.Kf = raw['values'][1]['Kf']
         self.Xr = raw['values'][2]['Xr']
@@ -77,6 +85,9 @@ class Param(object):
         self.Espacement_H = 0.2
         self.Nombre_hauteur_differentes = 50
         self.Precal_path = "ray051_02_2/" 
+        self.dteta = 2*10**-2
+        self.dh = 0.1
+        self.nphoton = 20
 
         """ Constantes & Variables que l'on peut ajuster """
         self.Vchar = 0.3  # Contenu en résidu charbonneux
