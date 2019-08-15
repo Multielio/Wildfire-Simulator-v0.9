@@ -1,5 +1,15 @@
+import numpy as np
+
 class Param(object):
     def  __init__(self):
+
+        self.Taille_grille = 50
+        self.Nomrad = "50x50"
+        self.Init_h = 0.51
+        self.Espacement_H = 0.2
+        self.Nombre_hauteur_differentes = 50
+        self.Precal_path = "ray051_02_2/" 
+
         """ Constantes & Variables que l'on peut ajuster """
         self.Vchar = 0.3  # Contenu en résidu charbonneux
         self.Kf = 0.4  # Coefficient d'extinction de la flamme,  utile pour calculer l'émissivité de celle ci
@@ -41,4 +51,31 @@ class Param(object):
         Lpyro table:
         https://lib.dr.iastate.edu/cgi/viewcontent.cgi?referer=https://www.google.fr/&httpsredir=1&article=1156&context=me_pubs
         """
+    
+    def printdata(self):
+        print("Vchar: {}".format(self.Vchar))
+        print("Kf: {}".format(self.Kf))
+        print("Xr: {}".format(self.Xr))
+        print("Tambiant: {} Kelvin".format(self.Tambiant))
+        print("Tpyro: {} Kelvin".format(self.Tpyro))
+        print("sigma_k: {} m^-1".format(self.sigma_k))
+        print("alpha_k: {}".format(self.alpha_k))
+        print("delta: {}".format(self.delta))
+        print("Efb: {}".format(self.Efb))
+        print("U: {} m.s^-1".format(self.U))
+        print("Teta_horizontal_vent: {}".format(self.Teta_horizontal_vent))
+        print("D: {} m".format(self.D))
+        print("Tc: {} s".format(self.Tc))
+        print("mprimeprimeDFF: {} kg.m^-2".format(self.mprimeprimeDFF))
+        print("Rho_wff: {}  kg.m^-3".format(self.Rho_wff))
+        print("Rho_dff: {}  kg.m^-3".format(self.Rho_dff))
+        print("Cdff: {} J.kg^-1 .K^-1".format(self.Cdff))
+        print("Cpeau: {} J.kg^-1 .K^-1".format(self.Cpeau))
+        print("FMC: {}".format(self.FMC))
+        print("hauteur_combustible: {}".format(self.hcom))
+        print("--------------------------------------------")
+
+    def loadDefault(self):
+
+
     
