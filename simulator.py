@@ -197,7 +197,7 @@ class Grille2D(object):
                             caseij.hascombustible = False
                             caseij.feu = False
 
-        self.radiation_enreception,self.fires,self.radgrids = reception_matrix(self.pa,self.rad, self.hauteurflamme_matrix, self.energie_matrix,self.radiation_enreception,self.fires,self.radgrids)
+        self.radiation_enreception = reception_matrix(self.pa,self.rad, self.hauteurflamme_matrix, self.energie_matrix)
         self.convection_enreception = reception_matrix_conv(self.longeurflamme_matrix, self.temperature_matrix)
   
         

@@ -3,10 +3,7 @@ Taille_grille: 50
 
 precal:
   - Nomrad : "50x50"
-  - Init_h : 0.51
-  - Espacement_H : 0.2
-  - Nombre_hauteur_differentes: 50
-  - Precal_path: "ray051_02_2/" 
+  - Precal_path: "ray/" 
   - dteta :  "2*10**-2"
   - dh : 0.1
   - nphoton : 20

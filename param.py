@@ -21,7 +21,8 @@ class Param(object):
         self.dh = raw['precal'][6]['dh']
         self.nphoton= raw['precal'][7]['nphoton']
         self.nbr_cores= raw['precal'][8]['nbr_cores']
-
+        self.topography = None
+        self.species = None
         self.Vchar = raw['values'][0]['Vchar']
         self.Kf = raw['values'][1]['Kf']
         self.Xr = raw['values'][2]['Xr']

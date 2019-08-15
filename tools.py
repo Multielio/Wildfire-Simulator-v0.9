@@ -1,6 +1,6 @@
 import numpy as np
 
-def intersection(point_depart_photon, vecteur_photon, coordonne_cylindre, rayon_cylindre, hauteur_cylindre):
+def intersection(point_depart_photon, vecteur_photon, coordonne_cylindre, rayon_cylindre, hauteur_cylindre,topography):
     """
    @input:  (float,float,float) point_depart_photon | Point de depart du photon
             (float,float,float) vecteur_photon | Vecteur associe au photon

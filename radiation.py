@@ -4,7 +4,7 @@ import matplotlib as plt
 from tools import *
 
 
-def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellule_combustible, debug=True, dprint=True):
+def sender(Map_hauteur, i, j, Map_energie, parameters, debug=True, dprint=True):
     """
    @input:  Matrix Map_hauteur | Matrice des hauteur de flamme
             Matrix Map_energie | Matrice des energies a émettre
@@ -41,21 +41,23 @@ def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellul
 
    @utilite: Fonction utilise par reception_matrix
    """
-    l = len(Map_hauteur)
+    l = parameters.Taille_grille
 
     # On récupère les infos sur la case qui va emettre
     energie = Map_hauteur[i, j]
-    nombre_subdivision_h = int(Map_hauteur[i, j]/dh)
+    nombre_subdivision_h = int(Map_hauteur[i, j]/parameters.dh)
 
     i = l-i-1  # On modife le i pour qu'il corresponde au schéma ci dessus
 
     # On calcule des valeurs pour notre ds et l'énergie élémentaire d'un photon
-    nombre_subdivision_teta = int((2*np.pi)/dteta)
-    photon_energie = energie/(nombre_subdivision_h*nombre_subdivision_teta*nphoton)
+    nombre_subdivision_teta = int((2*np.pi)/parameters.dteta)
+    photon_energie = energie/(nombre_subdivision_h*nombre_subdivision_teta*parameters.nphoton)
     result_matrix = np.zeros(shape=(l, l))
     if dprint:
         print("------------------------------")
         print("Nombre de surfaces elementaires considerees {}".format(str(nombre_subdivision_h*nombre_subdivision_teta)))
+
+
     for u in range(nombre_subdivision_h):
         if u == int(nombre_subdivision_h/4) and dprint:
             print("25% ..")
@@ -67,7 +69,7 @@ def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellul
             xx = []
             yy = []
         for v in range(nombre_subdivision_teta):
-            hauteur_envoi = dh*(u+1)
+            hauteur_envoi = parameters.topography[i][j]+dh*(u+1)  # TODO Crochets pas sur du tout
             tetads = dteta*v
             depart_x = (j*2*R + R) + R*np.cos(tetads)
             depart_y = (i*2*R + R) + R*np.sin(tetads)
@@ -78,7 +80,7 @@ def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellul
             uu = []
             vv = []
 
-            for counter in range(nphoton):
+            for counter in range(parameters.nphoton):
 
                 # On genere deux angles randoms/ rand_alpha doit etre genere de maniere particuliere
                 rand_phi = 2*np.arcsin(np.sqrt(random.random()))
@@ -162,7 +164,7 @@ def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellul
                     if hauteur_cylindre == 0:
                         iscombustible = True
                         hauteur_cylindre = hauteur_cellule_combustible
-                    intersec, distance = intersection(point_depart_photon, vecteur_photon, coordonne_cylindre, rayon_cylindre, hauteur_cylindre)
+                    intersec, distance = intersection(point_depart_photon, vecteur_photon, coordonne_cylindre, rayon_cylindre, hauteur_cylindre,parameters.topography)
                     if intersec:
                         distance_parcourue_jusque_intersection = distance
                         if not(iscombustible):
@@ -182,18 +184,11 @@ def sender(Map_hauteur, i, j, Map_energie, R, dteta, dh, nphoton, hauteur_cellul
  
     return result_matrix
 
-def create_mat(i,j,taille,w):
-    em_ij = np.zeros(shape=(taille, taille))
-    for u in range(taille):
-        for v in range(taille):
-            if taille//2+abs(i-u) >0 and  taille//2+abs(i-u) < taille and taille//2+abs(j-v) >0 and taille//2+abs(j-v) <taille and abs(i-u)<10 and abs(j-v) <10:
-                em_ij[u,v]=w[taille//2+abs(i-u),taille//2+abs(j-v)]
-    return em_ij
 
-def reception_matrix(para,rad, Map_hauteur, Map_energie,last,fires,radgrids):
+
+def reception_matrix(para,rad, Map_energie):
     """
    @input:  Object para | Objet contenant les parametres
-            Matrix Map_hauteur | Matrice des hauteurs de flamme
             Matrix Map_energie | Matrice des energies emises
 
    @output: Matrix Matrice des energies recues pour toutes les cellules
@@ -204,25 +199,13 @@ def reception_matrix(para,rad, Map_hauteur, Map_energie,last,fires,radgrids):
 
    """
     
-    l = len(Map_hauteur)
-    traite =[]
-    result_matrix = np.zeros(shape=(l, l))
+    result_matrix = np.zeros(shape=(para.Taille_grille, para.Taille_grille))
     for i in range(0, l):
         for j in range(0, l):
-            if Map_hauteur[i, j] != 0:
-                traite.append((i,j))
-                if (i,j) in fires:
-                    pass
-               
-                k = int((Map_hauteur[i, j]-para.Init_h)//para.Espacement_H)
-                mat = create_mat(i,j,l, ((rad[k][()])[(l//2, l//2)])*Map_energie[i][j])
-                radgrids[i,j] = mat
+                mat = rad[i][j]*Map_energie[i][j])
                 result_matrix = np.add(result_matrix,mat)
-    for (i,j) in fires:
-        if not((i,j) in traite):
-            result_matrix = np.subtract(result_matrix,radgrids[i,j])
-            fires.remove((i,j))
-    return result_matrix,traite,radgrids
+
+    return result_matrix
 
 
 def test_sender():
