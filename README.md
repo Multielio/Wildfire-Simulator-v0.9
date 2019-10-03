@@ -18,7 +18,7 @@ It took me 1 year to build it.
 
 **Required libraries**
 - Matplolib
-- Numpy
+- Numpy (pip install numpy==1.16.2)
 - Scipy
 - tqdm
 
