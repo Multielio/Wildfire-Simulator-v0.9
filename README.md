@@ -36,5 +36,8 @@ It took me 1 year to build it.
 3. The simulator prepare data for the next update of the simulator.
 }
 
-
+**Quickstart**
+- Launch test.py (it will use the default config.yml parameters and the default precalculus data)
+- Wait 
+- Images generated will be in the "store/" folder.
 
