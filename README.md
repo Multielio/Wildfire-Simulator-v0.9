@@ -5,6 +5,7 @@
 Simulator based on the real physical phenomenons acting in a wildfire, deals with wind, topography (with few changes), heat capacities..an more.
 It took me 1 year to build it.
 
+-------------------------------------------------------------------------------------------------------------------------
 
 **It is mainly based on the following papers**
 - Mohamed Drissi / Modeling the spreading of large-scale wildland fires 
@@ -16,12 +17,15 @@ It took me 1 year to build it.
 - No screening effect
 - Flames are cylinders
 
+-------------------------------------------------------------------------------------------------------------------------
+
 **Required libraries**
 - Matplolib
 - Numpy (pip install numpy==1.16.2)
 - Scipy
 - tqdm
 
+-------------------------------------------------------------------------------------------------------------------------
 
 **How it works**
 - Fill config.yml with your parameters
