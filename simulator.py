@@ -69,7 +69,7 @@ class Extractor(object):
             if i % storeOneOf_States ==0:
                 self.add(self.current)
                 if liveProduce:
-                    fig1 = plt.figure()
+                    fig1 = plt.figure(figsize=(16, 12))
                     image_situation(self.current,fig1)
                     image_temperature(self.current,fig1)
                     image_situation_3D(self.current,fig1)
@@ -78,6 +78,7 @@ class Extractor(object):
                     if os.path.isfile(path):
                         os.remove(path)
                     fig1.savefig(path, format='png')
+                    plt.close()
 
     
 
