@@ -1,6 +1,6 @@
 # Wildfire-Simulator
 
-![alt text](example_img.png) ![alt text](gif_simulator.gif)
+ ![alt text](gif_simulator.gif)
 
 Simulator based on the real physical phenomenons acting in a wildfire, deals with wind, topography (with few changes), heat capacities..an more.
 It took me 1 year to build it.
