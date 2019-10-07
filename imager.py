@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import colorConverter
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
+import matplotlib.patches as mpatches
 import numpy as np
 import datetime
 
@@ -12,9 +13,11 @@ def image_temperature(grille2D, fig1):
 
         f = np.vectorize(f)
         ax = fig1.add_subplot(2, 2, 4)
-        ax.matshow(f(grille2D.temperature_matrix), cmap=plt.get_cmap("afmhot"))
+        ma = ax.matshow(f(grille2D.temperature_matrix), cmap=plt.get_cmap("afmhot"))
         ax.xaxis.tick_bottom()
         ax.set_title('Image thermique')
+        cl= fig1.colorbar(ma, ticks=[-1,0,1], orientation='horizontal')
+        cl.set_label("Température")
 
 def image_situation_3D(grille2D, fig1):
     ax1 = fig1.add_subplot(222, projection="3d")
@@ -70,6 +73,11 @@ def image_situation(grille2D, fig1):
                 o.append(colorConverter.to_rgb(case.ctype.couleur))
         z.append(o) 
     ax1 = fig1.add_subplot(1, 2, 1)
-    ax1.imshow(z)
+    
+    im= ax1.imshow(z)
+    cmap = {1:colorConverter.to_rgb("red"),2:colorConverter.to_rgb("brown"),3:colorConverter.to_rgb("orange"),4:colorConverter.to_rgb("yellow"),5:colorConverter.to_rgb("black")}
+    labels = {1:'Flamme',2:'Combustible 373<T<T_pyro',3:'Combustible T=373K ',4:"Combustible T_amb<T<373",5:'Charbon'}  
+    patches =[mpatches.Patch(color=cmap[i],label=labels[i]) for i in cmap]
+    ax1.legend(handles=patches,loc=3, bbox_to_anchor=(0, -0.25, 0.30, 0.30) )
     ax1.set_title('Image situation')
         
