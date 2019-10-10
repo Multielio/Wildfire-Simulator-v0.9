@@ -1,4 +1,4 @@
-# Wildfire-Simulator
+## :fire: Wildfire-Simulator
 
  ![alt text](gif_simulator.gif)
 
@@ -19,7 +19,7 @@ It took me 1 year to build it.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-**Required libraries**
+## :exclamation: **Required libraries**
 - Matplolib
 - Numpy (pip install numpy==1.16.2)
 - Scipy
@@ -27,7 +27,7 @@ It took me 1 year to build it.
 
 -------------------------------------------------------------------------------------------------------------------------
 
-**How it works**
+## :computer: **How it works**
 - Fill config.yml with your parameters
 - Launch precalculus.py 
 - Launch test.py
@@ -40,7 +40,7 @@ It took me 1 year to build it.
 3. The simulator prepare data for the next update of the simulator.
 }
 
-**Quickstart**
+## :video_game: **Quickstart**
 - Launch test.py (it will use the default config.yml parameters and the default precalculus data)
 - Wait 
 - Images generated will be in the "store/" folder.
